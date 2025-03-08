@@ -125,4 +125,34 @@ public class FlightRepository {
 			.findFirst()
 			.orElse(null);
 	}
+
+	public List<Flight> getFilteredFlights(FlightFilter flightFilter) {
+		return getAllFlights()
+			.stream()
+			.filter(f -> flightFilter.departureLocation() == null
+					|| f.departureLocation().equals(flightFilter.departureLocation()))
+			.filter(f -> flightFilter.destinationLocation() == null
+					|| f.destinationLocation().equals(flightFilter.destinationLocation()))
+			.filter(f -> flightFilter.departureTimeStart() == null
+					|| f.departureTime().isAfter(flightFilter.departureTimeStart())
+					|| f.departureTime().equals(flightFilter.departureTimeStart()
+						.withZoneSameInstant(ZoneId.of("UTC"))))
+			.filter(f -> flightFilter.departureTimeEnd() == null
+					|| f.departureTime().isBefore(flightFilter.departureTimeEnd())
+					|| f.departureTime().equals(flightFilter.departureTimeEnd()
+						.withZoneSameInstant(ZoneId.of("UTC"))))
+			.filter(f -> flightFilter.arrivalTimeStart() == null
+					|| f.arrivalTime().isAfter(flightFilter.arrivalTimeStart())
+					|| f.arrivalTime().equals(flightFilter.arrivalTimeStart()
+						.withZoneSameInstant(ZoneId.of("UTC"))))
+			.filter(f -> flightFilter.arrivalTimeEnd() == null
+					|| f.arrivalTime().isBefore(flightFilter.arrivalTimeEnd())
+					|| f.arrivalTime().equals(flightFilter.arrivalTimeEnd()
+						.withZoneSameInstant(ZoneId.of("UTC"))))
+			.filter(f -> flightFilter.priceMin() == null
+					|| f.price() >= flightFilter.priceMin())
+			.filter(f -> flightFilter.priceMax() == null
+					|| f.price() <= flightFilter.priceMax())
+			.toList();
+	}
 }

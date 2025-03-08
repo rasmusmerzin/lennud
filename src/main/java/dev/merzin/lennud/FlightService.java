@@ -18,4 +18,8 @@ public class FlightService {
 	public Flight getFlight(String flightNumber) {
 		return flightRepository.getFlight(flightNumber);
 	}
+
+	public List<Flight> getFilteredFlights(FlightFilter flightFilter) {
+		return flightRepository.getFilteredFlights(flightFilter);
+	}
 }
