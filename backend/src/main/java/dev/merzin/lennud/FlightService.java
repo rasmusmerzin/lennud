@@ -39,6 +39,7 @@ public class FlightService {
 			var seat = availableSeats.remove((int) (Math.random() * availableSeats.size()));
 			bookedSeats.add(seat);
 		}
+		bookedSeats.sort(Integer::compareTo);
 		return new FlightBookings(plane, bookedSeats);
 	}
 }
