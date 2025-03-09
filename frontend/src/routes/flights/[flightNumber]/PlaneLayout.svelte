@@ -2,9 +2,11 @@
 	let {
 		layout,
 		bookedSeats,
+		selectedSeats = $bindable([]),
 	}: {
 		layout: string;
 		bookedSeats: number[];
+		selectedSeats?: number[];
 	} = $props();
 
 	let [rows, maxSeats] = $derived.by(() => {
@@ -22,12 +24,17 @@
 		return [rows, seat];
 	});
 	let availableSeats = $derived(maxSeats - bookedSeats.length);
+
+	function toggleSeat(seat: number) {
+		if (selectedSeats.includes(seat))
+			selectedSeats = selectedSeats.filter((s) => s !== seat);
+		else selectedSeats = [...selectedSeats, seat];
+	}
 </script>
 
 <div>
-	<div class="mb-2">
-		<div>Available seats: {availableSeats}</div>
-	</div>
+	<h2 class="text-lg font-bold">Seat layout</h2>
+	<div class="mt-1 mb-2 italic">Available seats: {availableSeats}</div>
 	{#each rows as row}
 		<div class="flex" class:row>
 			{#each row as seat}
@@ -36,7 +43,9 @@
 				{:else}
 					<button
 						class="flex h-8 w-8 items-center justify-center border border-gray-300"
+						class:selected={selectedSeats.includes(seat)}
 						disabled={bookedSeats.includes(seat)}
+						onclick={() => toggleSeat(seat)}
 					>
 						{seat}
 					</button>
@@ -47,8 +56,18 @@
 </div>
 
 <style>
-	button:disabled {
-		background-color: #ccc;
-		color: #fff;
+	button {
+		&.selected {
+			background-color: #007bff;
+			color: #fff;
+			font-weight: bold;
+		}
+		&:not(:disabled) {
+			cursor: pointer;
+		}
+		&:disabled {
+			background-color: #ccc;
+			color: #fff;
+		}
 	}
 </style>
