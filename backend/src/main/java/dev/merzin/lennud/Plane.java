@@ -3,7 +3,7 @@ package dev.merzin.lennud;
 public class Plane {
 	private String planeNumber;
 	private String layout;
-	private int seats;
+	private Integer seats;
 
 	public Plane(String planeNumber, String layout) {
 		this.planeNumber = planeNumber;
