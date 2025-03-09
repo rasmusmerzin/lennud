@@ -8,5 +8,6 @@ public record Flight(
 	String destinationLocation,
 	ZonedDateTime departureTime,
 	Integer durationMinutes,
-	Double price
+	Double price,
+	String planeNumber
 ) {}

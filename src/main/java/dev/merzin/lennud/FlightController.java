@@ -43,4 +43,9 @@ public class FlightController {
 	public Flight getFlight(@PathVariable String flightNumber) {
 		return flightService.getFlight(flightNumber);
 	}
+
+	@GetMapping("/flights/{flightNumber}/bookings")
+	public FlightBookings getFlightBookings(@PathVariable String flightNumber) {
+		return flightService.getFlightBookings(flightNumber);
+	}
 }

@@ -20,7 +20,8 @@ public class FlightRepository {
 					"WAW",
 					Instant.parse("2025-04-01T08:00:00Z").atZone(ZoneId.of("UTC")),
 					120,
-					100.0
+					100.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO124",
@@ -28,7 +29,8 @@ public class FlightRepository {
 					"TLL",
 					Instant.parse("2025-04-01T12:00:00Z").atZone(ZoneId.of("UTC")),
 					120,
-					100.0
+					100.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO125",
@@ -36,7 +38,8 @@ public class FlightRepository {
 					"RIX",
 					Instant.parse("2025-04-01T16:00:00Z").atZone(ZoneId.of("UTC")),
 					90,
-					50.0
+					50.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO126",
@@ -44,7 +47,8 @@ public class FlightRepository {
 					"TLL",
 					Instant.parse("2025-04-01T20:00:00Z").atZone(ZoneId.of("UTC")),
 					90,
-					50.0
+					50.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO127",
@@ -52,7 +56,8 @@ public class FlightRepository {
 					"HEL",
 					Instant.parse("2025-04-02T08:00:00Z").atZone(ZoneId.of("UTC")),
 					60,
-					75.0
+					75.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO128",
@@ -60,7 +65,8 @@ public class FlightRepository {
 					"TLL",
 					Instant.parse("2025-04-02T12:00:00Z").atZone(ZoneId.of("UTC")),
 					60,
-					75.0
+					75.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO129",
@@ -68,7 +74,8 @@ public class FlightRepository {
 					"RIX",
 					Instant.parse("2025-04-02T16:00:00Z").atZone(ZoneId.of("UTC")),
 					90,
-					50.0
+					50.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO130",
@@ -76,7 +83,8 @@ public class FlightRepository {
 					"TLL",
 					Instant.parse("2025-04-02T20:00:00Z").atZone(ZoneId.of("UTC")),
 					90,
-					50.0
+					50.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO131",
@@ -84,7 +92,8 @@ public class FlightRepository {
 					"HEL",
 					Instant.parse("2025-04-03T08:00:00Z").atZone(ZoneId.of("UTC")),
 					60,
-					75.0
+					75.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO132",
@@ -92,7 +101,8 @@ public class FlightRepository {
 					"TLL",
 					Instant.parse("2025-04-03T12:00:00Z").atZone(ZoneId.of("UTC")),
 					60,
-					75.0
+					75.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO133",
@@ -100,7 +110,8 @@ public class FlightRepository {
 					"RIX",
 					Instant.parse("2025-04-03T16:00:00Z").atZone(ZoneId.of("UTC")),
 					90,
-					50.0
+					50.0,
+					"ES-AAC"
 				),
 				new Flight(
 					"LO134",
@@ -108,7 +119,8 @@ public class FlightRepository {
 					"TLL",
 					Instant.parse("2025-04-03T20:00:00Z").atZone(ZoneId.of("UTC")),
 					90,
-					50.0
+					50.0,
+					"ES-AAC"
 				)
 			);
 			return flights;
