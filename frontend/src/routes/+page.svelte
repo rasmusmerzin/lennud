@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { getFlights } from "$lib/api";
-	import type { Flight } from "$lib/model";
 	import { onMount } from "svelte";
+	import type { Flight } from "$lib/model";
+	import { getFlights } from "$lib/api";
+	import FlightRow from "./FlightRow.svelte";
+	import FlightHeader from "./FlightHeader.svelte";
 
 	let flights = $state<Flight[]>([]);
 
@@ -10,8 +12,10 @@
 	});
 </script>
 
-{#each flights as flight}
-	<a href="flights/{flight.flightNumber}">
-		<pre>{JSON.stringify(flight, null, 2)}</pre>
-	</a>
-{/each}
+<div class="container mx-auto min-w-192 px-4 lg:max-w-256">
+	<h1 class="my-8 text-2xl font-black">Flights</h1>
+	<FlightHeader />
+	{#each flights as flight}
+		<FlightRow {flight} />
+	{/each}
+</div>
