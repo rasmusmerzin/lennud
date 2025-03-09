@@ -1,17 +1,27 @@
 <script lang="ts">
+	import { slide } from "svelte/transition";
 	import type { Flight } from "$lib/model";
-	const { flight }: { flight: Flight } = $props();
-	const departureDate = flight.departureTime.substring(0, 10);
-	const departureTime = flight.departureTime.substring(11, 16);
-	const departureTimestamp = new Date(flight.departureTime).getTime();
-	const arrivalTimestamp =
-		departureTimestamp + flight.durationMinutes * 60 * 1000;
-	const arrivalTime = new Date(arrivalTimestamp)
-		.toISOString()
-		.substring(11, 16);
+
+	let { flight }: { flight: Flight } = $props();
+
+	let departureTimestamp = $derived(new Date(flight.departureTime).getTime());
+	let arrivalTimestamp = $derived(
+		departureTimestamp + flight.durationMinutes * 60 * 1000,
+	);
+	let departureDate = $derived(
+		new Date(departureTimestamp).toISOString().substring(0, 10),
+	);
+	let departureTime = $derived(
+		new Date(departureTimestamp).toISOString().substring(11, 16),
+	);
+	let arrivalTime = $derived(
+		new Date(arrivalTimestamp).toISOString().substring(11, 16),
+	);
 </script>
 
 <a
+	in:slide
+	out:slide
 	href="flights/{flight.flightNumber}"
 	class="flex border-b p-2 hover:font-bold hover:shadow-md"
 >
