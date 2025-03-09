@@ -19,7 +19,7 @@ public class FlightRepository {
 					"TLL",
 					"WAW",
 					Instant.parse("2025-04-01T08:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-01T10:00:00Z").atZone(ZoneId.of("UTC")),
+					120,
 					100.0
 				),
 				new Flight(
@@ -27,7 +27,7 @@ public class FlightRepository {
 					"WAW",
 					"TLL",
 					Instant.parse("2025-04-01T12:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-01T14:00:00Z").atZone(ZoneId.of("UTC")),
+					120,
 					100.0
 				),
 				new Flight(
@@ -35,7 +35,7 @@ public class FlightRepository {
 					"TLL",
 					"RIX",
 					Instant.parse("2025-04-01T16:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-01T18:00:00Z").atZone(ZoneId.of("UTC")),
+					90,
 					50.0
 				),
 				new Flight(
@@ -43,7 +43,7 @@ public class FlightRepository {
 					"RIX",
 					"TLL",
 					Instant.parse("2025-04-01T20:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-01T22:00:00Z").atZone(ZoneId.of("UTC")),
+					90,
 					50.0
 				),
 				new Flight(
@@ -51,7 +51,7 @@ public class FlightRepository {
 					"TLL",
 					"HEL",
 					Instant.parse("2025-04-02T08:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-02T10:00:00Z").atZone(ZoneId.of("UTC")),
+					60,
 					75.0
 				),
 				new Flight(
@@ -59,7 +59,7 @@ public class FlightRepository {
 					"HEL",
 					"TLL",
 					Instant.parse("2025-04-02T12:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-02T14:00:00Z").atZone(ZoneId.of("UTC")),
+					60,
 					75.0
 				),
 				new Flight(
@@ -67,7 +67,7 @@ public class FlightRepository {
 					"TLL",
 					"RIX",
 					Instant.parse("2025-04-02T16:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-02T18:00:00Z").atZone(ZoneId.of("UTC")),
+					90,
 					50.0
 				),
 				new Flight(
@@ -75,7 +75,7 @@ public class FlightRepository {
 					"RIX",
 					"TLL",
 					Instant.parse("2025-04-02T20:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-02T22:00:00Z").atZone(ZoneId.of("UTC")),
+					90,
 					50.0
 				),
 				new Flight(
@@ -83,7 +83,7 @@ public class FlightRepository {
 					"TLL",
 					"HEL",
 					Instant.parse("2025-04-03T08:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-03T10:00:00Z").atZone(ZoneId.of("UTC")),
+					60,
 					75.0
 				),
 				new Flight(
@@ -91,7 +91,7 @@ public class FlightRepository {
 					"HEL",
 					"TLL",
 					Instant.parse("2025-04-03T12:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-03T14:00:00Z").atZone(ZoneId.of("UTC")),
+					60,
 					75.0
 				),
 				new Flight(
@@ -99,7 +99,7 @@ public class FlightRepository {
 					"TLL",
 					"RIX",
 					Instant.parse("2025-04-03T16:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-03T18:00:00Z").atZone(ZoneId.of("UTC")),
+					90,
 					50.0
 				),
 				new Flight(
@@ -107,7 +107,7 @@ public class FlightRepository {
 					"RIX",
 					"TLL",
 					Instant.parse("2025-04-03T20:00:00Z").atZone(ZoneId.of("UTC")),
-					Instant.parse("2025-04-03T22:00:00Z").atZone(ZoneId.of("UTC")),
+					90,
 					50.0
 				)
 			);
@@ -141,14 +141,10 @@ public class FlightRepository {
 					|| f.departureTime().isBefore(flightFilter.departureTimeEnd())
 					|| f.departureTime().equals(flightFilter.departureTimeEnd()
 						.withZoneSameInstant(ZoneId.of("UTC"))))
-			.filter(f -> flightFilter.arrivalTimeStart() == null
-					|| f.arrivalTime().isAfter(flightFilter.arrivalTimeStart())
-					|| f.arrivalTime().equals(flightFilter.arrivalTimeStart()
-						.withZoneSameInstant(ZoneId.of("UTC"))))
-			.filter(f -> flightFilter.arrivalTimeEnd() == null
-					|| f.arrivalTime().isBefore(flightFilter.arrivalTimeEnd())
-					|| f.arrivalTime().equals(flightFilter.arrivalTimeEnd()
-						.withZoneSameInstant(ZoneId.of("UTC"))))
+			.filter(f -> flightFilter.durationMinutesMin() == null
+					|| f.durationMinutes() >= flightFilter.durationMinutesMin())
+			.filter(f -> flightFilter.durationMinutesMax() == null
+					|| f.durationMinutes() <= flightFilter.durationMinutesMax())
 			.filter(f -> flightFilter.priceMin() == null
 					|| f.price() >= flightFilter.priceMin())
 			.filter(f -> flightFilter.priceMax() == null

@@ -7,6 +7,6 @@ public record Flight(
 	String departureLocation,
 	String destinationLocation,
 	ZonedDateTime departureTime,
-	ZonedDateTime arrivalTime,
+	Integer durationMinutes,
 	Double price
 ) {}

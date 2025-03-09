@@ -7,8 +7,8 @@ public record FlightFilter(
 	String destinationLocation,
 	ZonedDateTime departureTimeStart,
 	ZonedDateTime departureTimeEnd,
-	ZonedDateTime arrivalTimeStart,
-	ZonedDateTime arrivalTimeEnd,
+	Integer durationMinutesMin,
+	Integer durationMinutesMax,
 	Double priceMin,
 	Double priceMax
 ) {}

@@ -22,8 +22,8 @@ public class FlightController {
 		@RequestParam(required = false) String destinationLocation,
 		@RequestParam(required = false) ZonedDateTime departureTimeStart,
 		@RequestParam(required = false) ZonedDateTime departureTimeEnd,
-		@RequestParam(required = false) ZonedDateTime arrivalTimeStart,
-		@RequestParam(required = false) ZonedDateTime arrivalTimeEnd,
+		@RequestParam(required = false) Integer durationMinutesMin,
+		@RequestParam(required = false) Integer durationMinutesMax,
 		@RequestParam(required = false) Double priceMin,
 		@RequestParam(required = false) Double priceMax
 	) {
@@ -32,8 +32,8 @@ public class FlightController {
 			destinationLocation,
 			departureTimeStart,
 			departureTimeEnd,
-			arrivalTimeStart,
-			arrivalTimeEnd,
+			durationMinutesMin,
+			durationMinutesMax,
 			priceMin,
 			priceMax
 		));
