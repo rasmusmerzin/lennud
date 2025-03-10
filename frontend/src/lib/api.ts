@@ -1,6 +1,8 @@
 import type { Flight, FlightBookings, FlightFilter } from "./model";
 
-const API_URL = "http://localhost:8080";
+const API_URL = import.meta.env.PROD
+	? "https://lennud.fly.dev"
+	: "http://localhost:8080";
 
 export async function getFlights(
 	filter: FlightFilter,
