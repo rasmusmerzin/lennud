@@ -1,48 +1,32 @@
 <script lang="ts">
+	import type { LayoutRows } from "$lib/seats";
+
 	let {
-		layout,
+		rows,
 		bookedSeats,
 		selectedSeats = $bindable([]),
 	}: {
-		layout: string;
+		rows: LayoutRows;
 		bookedSeats: number[];
 		selectedSeats?: number[];
 	} = $props();
 
-	let [rows, maxSeats] = $derived.by(() => {
-		const lines = layout.split("\n");
-		let seat = 0;
-		const rows: (number | null)[][] = [];
-		for (const line of lines) {
-			const row: (number | null)[] = [];
-			for (const char of line) {
-				if (char === "X") row.push(++seat);
-				else row.push(null);
-			}
-			rows.push(row);
-		}
-		return [rows, seat];
-	});
-	let availableSeats = $derived(maxSeats - bookedSeats.length);
-
 	function toggleSeat(seat: number) {
-		if (selectedSeats.includes(seat))
-			selectedSeats = selectedSeats.filter((s) => s !== seat);
-		else selectedSeats = [...selectedSeats, seat];
+		const index = selectedSeats.indexOf(seat);
+		if (index < 0) selectedSeats.push(seat);
+		else selectedSeats.splice(index, 1);
 	}
 </script>
 
 <div>
-	<h2 class="text-lg font-bold">Seat layout</h2>
-	<div class="mt-1 mb-2 italic">Available seats: {availableSeats}</div>
 	{#each rows as row}
 		<div class="flex" class:row>
 			{#each row as seat}
 				{#if seat === null}
-					<div class="h-8 w-8"></div>
+					<div class="h-10 w-10"></div>
 				{:else}
 					<button
-						class="flex h-8 w-8 items-center justify-center border border-gray-300"
+						class="flex h-10 w-10 items-center justify-center border border-gray-300"
 						class:selected={selectedSeats.includes(seat)}
 						disabled={bookedSeats.includes(seat)}
 						onclick={() => toggleSeat(seat)}
