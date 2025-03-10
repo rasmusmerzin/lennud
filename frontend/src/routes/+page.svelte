@@ -1,16 +1,12 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import type { Flight } from "$lib/model";
 	import { getFlights } from "$lib/api";
+	import type { PageProps } from "./$types";
 	import FlightRow from "./FlightRow.svelte";
 	import FlightHeader from "./FlightHeader.svelte";
 	import FlightFilter from "./FlightFilter.svelte";
 
-	let flights = $state<Flight[]>([]);
-
-	onMount(async () => {
-		flights = await getFlights({});
-	});
+	let { data }: PageProps = $props();
+	let flights = $state(data.flights);
 </script>
 
 <div class="container mx-auto my-8 min-w-192 px-4 lg:max-w-256">
