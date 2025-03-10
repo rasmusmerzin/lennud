@@ -1,8 +1,16 @@
 # lennud
 
-This is a practice project for CGI summer internship.
+This is a practice project for CGI summer internship. The project is a simple
+flight booking system with a list of flights and a plane layout for each flight.
 
-## Running the project
+Frontend is deployed on GitHub Pages
+([https://rasmusmerzin.github.io/lennud](https://rasmusmerzin.github.io/lennud))
+and backend on fly.io ([https://lennud.fly.dev](https://lennud.fly.dev)).
+
+> **Note:** The backend is deployed on a free tier, so it may take a while to
+> start up, even up to 10 seconds.
+
+## Running locally
 
 To run the project, you need JDK 21 and Node.js with npm installed.
 
