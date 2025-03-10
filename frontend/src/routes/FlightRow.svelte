@@ -22,7 +22,7 @@
 <a
 	in:slide
 	out:slide
-	href="flights/{flight.flightNumber}"
+	href={flight.flightNumber}
 	class="flex border-b p-2 hover:font-bold hover:shadow-md"
 >
 	<div class="flex-1">{flight.flightNumber}</div>
