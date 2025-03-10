@@ -1,4 +1,4 @@
-FROM gradle:jdk21
+FROM gradle:jdk21-alpine
 COPY . /app
 WORKDIR /app
 RUN ./gradlew build
