@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/flights")
 public class FlightController {
 	private final FlightService flightService;
 
@@ -18,7 +20,7 @@ public class FlightController {
 		this.flightService = flightService;
 	}
 
-	@GetMapping("/flights")
+	@GetMapping
 	public List<Flight> getFlights(
 		@RequestParam(required = false) String departureLocation,
 		@RequestParam(required = false) String destinationLocation,
@@ -41,12 +43,12 @@ public class FlightController {
 		));
 	}
 
-	@GetMapping("/flights/{flightNumber}")
+	@GetMapping("{flightNumber}")
 	public Flight getFlight(@PathVariable String flightNumber) {
 		return flightService.getFlight(flightNumber);
 	}
 
-	@GetMapping("/flights/{flightNumber}/bookings")
+	@GetMapping("{flightNumber}/bookings")
 	public FlightBookings getFlightBookings(@PathVariable String flightNumber) {
 		return flightService.getFlightBookings(flightNumber);
 	}
